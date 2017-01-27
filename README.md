@@ -11,28 +11,31 @@ The instruction pointer starts from the first byte moving forward, but after eve
  - If the instruction just executed occurs only once in the code, terminate.
  - If the top of the main stack is not 0, invert the direction
  - Jump to just after the next occurrence of the just executed instruction
-The code is considered to be cyclic (the first and last characters are next to each other). Whats the _next_ occurrence of an instruction and what's the instruction _after_ depend on the current direction.
+
+The code is considered to be cyclic (the first and last characters are next to each other). Whats the _next_ occurrence of an instruction and what's the instruction _after_ that depend on the current direction.
 
 The memory is composed by two stacks (main and auxiliary) which can contain an unlimited amount of arbitrary integers: most commands operate on the main stack, but every time a value is popped from a stack it is automatically pushed on the other one. Every stack has an infinite amount of implicit 0s on the bottom.
 
 ###Instructions
 
-Character|Instruction
---------------------|---------------------------------
+Lines starting with `#` are considered comments. Any newline is ignored.
+
+Character|Instruction|Notes
+--------------------|-----------------|----------------
 0-9|Push the corresponding int on the main stack
-\- + \* / % |b=pop(),a=pop(),push(a op b). / is integer division
-> < = |b=pop(),a=pop(),push(a compare b).
-!|push(not(pop())). Pushes 1 if popped value was 0, pushes 0 otherwise
-\_|pop(). Pushes on auxiliary stack
-^|pop() from auxiliary stack. Pushes on main stack
-;|clear auxiliary stack. The only way to erase data
-$|swap top two values on main stack. Doesn't use pop-push
-&|push(integer from input).
-~|push(char from input).
-.|print((pop() as int)+space)
-,|print(pop() as char)
-"|start/end string mode: any other char encountered while in string mode pushes its value instead of executing normally.
-Anything else|noop.
+\- + \* / % |b=pop(),a=pop(),push(a op b)| / is integer division
+> < = |b=pop(),a=pop(),push(a compare b)| 1 for True, 0 for False
+!|push(not(pop()))| Pushes 1 if popped value was 0, pushes 0 otherwise
+\_|pop()| Pushes on auxiliary stack
+^|pop() from auxiliary stack| Pushes on main stack
+;|clear auxiliary stack| The only way to erase data
+$|swap top two values on main stack| Doesn't use pop-push
+&|push(integer from input)|
+~|push(char from input)|
+.|print((pop() as int)+space)|
+,|print(pop() as char)|
+"|start/end string mode| Any other char encountered while in string mode pushes its value instead of executing normally.
+Anything else|noop|
 
 Instruction pointer jumps on noops as it does on any other command. Even during string mode branches are performed after every character pushed.
 
