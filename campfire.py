@@ -21,7 +21,8 @@ class Stack:
         return val
     
     def swap(self):
-        self.values.append(self.values.pop(-2))
+        second = 0 if len(self.values)<2 else self.values.pop(-2)
+        self.values.append(second)
     
     def clear(self):
         self.values=list()
