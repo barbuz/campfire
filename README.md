@@ -1,5 +1,5 @@
 # Campfire
-### An esoteric programming language where every instruction is a branch
+### An esoteric programming language which is just a heap of branches
 ##### and you'll want to set them on fire
 <hr/>
 We all know that the standard flow of execution is so dull and boring, that's why every code anyone writes after "Hello world" has at least a conditional branch or a loop in it. With this in mind, I present you the most interesting language ever produced! In campfire every instruction doubles up as a (possibly conditional) branch, and since instructions are composed by a single byte this gives us an incredible 100% score on the branches per byte executed category!
