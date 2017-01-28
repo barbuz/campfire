@@ -1,1 +1,6 @@
-"H"!d!dllerolrlwo w Hea,q_,_^a^
+#Print "Hello world!" and terminate.
+#
+#first part: push the string to the stack (in reverse)
+"H"!d!dllerolrlwo w He
+#second part: print the whole stack
+a,q_,_^a^

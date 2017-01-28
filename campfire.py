@@ -4,6 +4,7 @@ import sys
 import re
 
 class Stack:
+    #A particular implementation of a stack, with implicit 0s at the bottom and a secondary stack to push popped values to
     def __init__(self,other=None):
         self.values=list()
         self.other=other
@@ -48,15 +49,13 @@ def run(code,debug=False):
         elif instruction in '-+*%><':
             b=str(stack.pop())
             a=str(stack.pop())
-            stack.push(int(eval(a+instruction+b)))
+            stack.push(int(eval(a+instruction+b))) #easy and ugly
         elif instruction=='/=':
             b=str(stack.pop())
             a=str(stack.pop())
-            stack.push(int(eval(a+instruction*2+b)))
+            stack.push(int(eval(a+instruction*2+b))) #easy and uglier
         elif instruction=='!':
             stack.push(int(not stack.pop()))
-        elif instruction=='`':
-            stack.push(-stack.pop())
         elif instruction=='~':
             char=sys.stdin.read(1)
             if len(char)==0:
@@ -64,11 +63,11 @@ def run(code,debug=False):
             else:
                 stack.push(ord(char))
         elif instruction=='&':
-            stack.push(int(input())) #TODO: fix
+            stack.push(int(input())) #doesn't work properly, will be fixed (eventually)
         elif instruction==',':
             print(chr(stack.pop()),end='')
         elif instruction=='.':
-            print(stack.pop(),end=' ')
+            print(stack.pop(),end=' ') #are there better ideas than adding a space after every int?
         elif instruction=='_':
             stack.pop()
         elif instruction=='^':
@@ -80,22 +79,22 @@ def run(code,debug=False):
         else:
             pass
         
-        occurrences = [match.start() for match in re.finditer(re.escape(instruction),code)]
+        occurrences = [match.start() for match in re.finditer(re.escape(instruction),code)] #list of all positions of the current instruction
         if len(occurrences)==1:
             return
         if stack.tos!=0:
             direction=-direction
-        next_occurrence=occurrences[(occurrences.index(position)+direction)%len(occurrences)]
-        position=(next_occurrence+direction)%len(code)
+        next_occurrence=occurrences[(occurrences.index(position)+direction)%len(occurrences)] #next occurrence depends on direction, and wraps
+        position=(next_occurrence+direction)%len(code) #the next instruction executed is the one after the next occurrence of the current instruction
 
 def main(args):
     with open(args[1],'r') as program:
         lines=program.readlines()
     code=""
-    for line in lines:
+    for line in lines: #remove comments and newlines
         if line[0]!='#':
            code+=line.strip('\n') 
-    run(code,len(args)>2)
+    run(code,len(args)>2) #any argument is --debug! (support for different arguments may come in the future)
 
 if __name__ == '__main__':
     sys.exit(main(sys.argv))
