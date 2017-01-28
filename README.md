@@ -31,7 +31,7 @@ Character|Instruction|Notes
 ;|clear auxiliary stack| The only way to erase data
 $|swap top two values on main stack| Doesn't use pop-push
 &|push(integer from input)|
-~|push(char from input)|
+~|push(char from input)| Pushes 0 on EOF
 .|print((pop() as int)+space)|
 ,|print(pop() as char)|
 "|start/end string mode| Any other char encountered while in string mode pushes its value instead of executing normally.
