@@ -24,7 +24,7 @@ Character|Instruction|Notes
 --------------------|-----------------|----------------
 0-9|Push the corresponding int on the main stack
 \- + \* / % |b=pop(),a=pop(),push(a op b)| / is integer division
-> < = |b=pop(),a=pop(),push(a compare b)| 1 for True, 0 for False
+\> < = |b=pop(),a=pop(),push(a compare b)| 1 for True, 0 for False
 !|push(not(pop()))| Pushes 1 if popped value was 0, pushes 0 otherwise
 \_|pop()| Pushes on auxiliary stack
 ^|pop() from auxiliary stack| Pushes on main stack
@@ -32,7 +32,7 @@ Character|Instruction|Notes
 $|swap top two values on main stack| Doesn't use pop-push
 &|push(integer from input)|
 ~|push(char from input)| Pushes 0 on EOF
-.|print((pop() as int)+space)|
+.|print((pop() as int)+newline)|
 ,|print(pop() as char)|
 "|start/end string mode| Any other char encountered while in string mode pushes its value instead of executing normally.
 Anything else|noop|
