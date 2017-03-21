@@ -63,11 +63,11 @@ def run(code,debug=False):
             else:
                 stack.push(ord(char))
         elif instruction=='&':
-            stack.push(int(input())) #doesn't work properly, will be fixed (eventually)
+            stack.push(int(input())) #fails if the input consists of anything different than a single int
         elif instruction==',':
             print(chr(stack.pop()),end='')
         elif instruction=='.':
-            print(stack.pop(),end=' ') #are there better ideas than adding a space after every int?
+            print(stack.pop(),end='\n')
         elif instruction=='_':
             stack.pop()
         elif instruction=='^':
