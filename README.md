@@ -4,7 +4,7 @@
 <hr/>
 We all know that the standard flow of execution is so dull and boring, that's why every code anyone writes after "Hello world" has at least a conditional branch or a loop in it. With this in mind, I present you the most interesting language ever produced! In campfire every instruction doubles up as a (possibly conditional) branch, and since instructions are composed by a single byte this gives us an incredible 100% score on the branches per byte executed category!
 
-###How it works
+### How it works
 
 The instruction pointer starts from the first byte moving forward, but after every instruction:
 
@@ -16,7 +16,7 @@ The code is considered to be cyclic (the first and last characters are next to e
 
 The memory is composed by two stacks (main and auxiliary) which can contain an unlimited amount of arbitrary integers: most commands operate on the main stack, but every time a value is popped from a stack it is automatically pushed on the other one. Every stack has an infinite amount of implicit 0s on the bottom.
 
-###Instructions
+### Instructions
 
 Lines starting with `#` are considered comments. Any newline is ignored.
 
@@ -39,7 +39,7 @@ Anything else|noop|
 
 Instruction pointer jumps on noops as it does on any other command. Even during string mode branches are performed after every character pushed.
 
-###Example of program flow:
+### Example of program flow:
 
     ab1dabc1ca
     1 36 24  5
