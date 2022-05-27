@@ -4,7 +4,7 @@
 <hr/>
 We all know that the standard flow of execution is so dull and boring, that's why every code anyone writes after "Hello world" has at least a conditional branch or a loop in it. With this in mind, I present you the most interesting language ever produced! In campfire every instruction doubles up as a (possibly conditional) branch, and since instructions are composed by a single byte this gives us an incredible 100% score on the branches per byte executed category!
 
-###How it works
+### How it works
 
 The instruction pointer starts from the first byte moving forward, but after every instruction:
 
@@ -16,7 +16,7 @@ The code is considered to be cyclic (the first and last characters are next to e
 
 The memory is composed by two stacks (main and auxiliary) which can contain an unlimited amount of arbitrary integers: most commands operate on the main stack, but every time a value is popped from a stack it is automatically pushed on the other one. Every stack has an infinite amount of implicit 0s on the bottom.
 
-###Instructions
+### Instructions
 
 Lines starting with `#` are considered comments. Any newline is ignored.
 
@@ -24,7 +24,7 @@ Character|Instruction|Notes
 --------------------|-----------------|----------------
 0-9|Push the corresponding int on the main stack
 \- + \* / % |b=pop(),a=pop(),push(a op b)| / is integer division
-> < = |b=pop(),a=pop(),push(a compare b)| 1 for True, 0 for False
+\> < = |b=pop(),a=pop(),push(a compare b)| 1 for True, 0 for False
 !|push(not(pop()))| Pushes 1 if popped value was 0, pushes 0 otherwise
 \_|pop()| Pushes on auxiliary stack
 ^|pop() from auxiliary stack| Pushes on main stack
@@ -32,14 +32,14 @@ Character|Instruction|Notes
 $|swap top two values on main stack| Doesn't use pop-push
 &|push(integer from input)|
 ~|push(char from input)| Pushes 0 on EOF
-.|print((pop() as int)+space)|
+.|print((pop() as int)+newline)|
 ,|print(pop() as char)|
 "|start/end string mode| Any other char encountered while in string mode pushes its value instead of executing normally.
 Anything else|noop|
 
 Instruction pointer jumps on noops as it does on any other command. Even during string mode branches are performed after every character pushed.
 
-###Example of program flow:
+### Example of program flow:
 
     ab1dabc1ca
     1 36 24  5
