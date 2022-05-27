@@ -50,7 +50,7 @@ def run(code,debug=False):
             b=str(stack.pop())
             a=str(stack.pop())
             stack.push(int(eval(a+instruction+b))) #easy and ugly
-        elif instruction=='/=':
+        elif instruction in '/=':
             b=str(stack.pop())
             a=str(stack.pop())
             stack.push(int(eval(a+instruction*2+b))) #easy and uglier
@@ -74,7 +74,7 @@ def run(code,debug=False):
             auxiliary.pop()
         elif instruction=='$':
             stack.swap()
-        elif instruction=='#':
+        elif instruction==';':
             auxiliary.clear()
         else:
             pass
